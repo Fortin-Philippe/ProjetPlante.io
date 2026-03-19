@@ -1,28 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Projet – Système d’aide à l’entretien des plantes d’intérieur</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f5f5f5; }
+    .section-title { border-left: 5px solid #2f855a; padding-left: 10px; margin-top: 40px; margin-bottom: 20px; color: #22543d; }
+    .proposition { border-top: 3px solid #e2e8f0; padding-top: 30px; margin-top: 40px; }
+  </style>
 </head>
-<body>
-    <section><h2>schemas : </h2>
-    <img src="" alt=""></section>
 
-    <section>
-        <h2>source : </h2>
-        <ul>
-            <li>https://projecthub.arduino.cc/lucasfernando/soil-moisture-sensor-comple-guide-b9c82b</li>
-            <li>https://forum.arduino.cc/t/connect-lcd-screen-to-a-breadboard/1326972</li>
-            <li> https://www.scribd.com/document/684504041/ELEGOO-MEGA-Kit-Breadboard-Power-Supply-Module</li>
-            <li>https://dotja.github.io/electronics/2020/05/13/Exploring-the-Elegoo-power-module.html</li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </section>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container">
+      <a class="navbar-brand" href="#">Projet Plantes</a>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light shadow-sm">
+    <div class="container justify-content-center">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="#proposition1">Proposition 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#proposition2">Proposition 2</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+
+    <h1 class="text-center mb-4">Projet – Système d’aide à l’entretien des plantes d’intérieur</h1>
+
+    <h2 class="section-title">Constat de départ</h2>
+
+    <div class="row align-items-center mb-3">
+      <div class="col-md-8">
+        <p>La botanique intérieure est un art qui ne peut survivre sans interaction humaine. Pour rester en santé, les plantes ont besoin d’un équilibre eau et lumière propre à leur espèce.</p>
+        <p>Avec les horaires chargés et les déplacements, il est facile d’oublier une plante ou de la négliger, ce qui peut mener à son affaiblissement ou à sa mort.</p>
+        <p>Même si les plantes n’ont pas de conscience, elles restent des êtres vivants dont l’entretien mérite d’être pris au sérieux.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="img/imgPlante.png" class="img-fluid rounded shadow-sm" alt="Illustration du projet">
+      </div>
+    </div>
+
+    <h2 class="section-title" id="projet-propose">Projet proposé</h2>
+
+    <p>Pour simplifier la vie des utilisateurs tout en respectant les besoins des plantes, nous avons décidé de concevoir un système qui facilite leur entretien. L’objectif est d’offrir un outil simple, clair et efficace pour mieux comprendre et répondre aux besoins des plantes d’intérieur.</p>
+
+    <h2 class="section-title">Visées du projet</h2>
+    <ul>
+      <li>Permettre aux utilisateurs de garder leurs plantes en santé selon leur espèce</li>
+      <li>Rendre la botanique intérieure plus accessible et agréable</li>
+      <li>Offrir aux plantes une aide adaptée à leurs besoins réels</li>
+      <li>Fournir des indications claires et faciles à comprendre</li>
+    </ul>
+
+    <h2 class="section-title">Contraintes</h2>
+    <ul>
+      <li>Résistance à l’eau</li>
+      <li>Coût abordable</li>
+      <li>Adaptation à différents types de plantes</li>
+    </ul>
+
+    <div class="proposition">
+      <h2 class="section-title" id="proposition1">Proposition #1 – Système de notification du besoin de la plante (avec OpenFarm)</h2>
+
+      <div class="text-center mb-4">
+        <img src="img/imgProp1.png" class="img-fluid rounded shadow-sm" style="max-height: 350px; object-fit: cover;" alt="Système de notification de plante">
+      </div>
+
+      <h3>Description détaillée de la proposition</h3>
+      <p>Le système de notification du besoin de la plante est une installation permettant d’aider l’utilisateur à maintenir une plante en bonne santé. Contrairement à un système automatisé, celui-ci n’agit pas directement sur l’environnement de la plante. Il se limite à analyser les conditions et à informer l’utilisateur lorsque quelque chose ne correspond pas aux besoins de la plante.</p>
+      <p>Le dispositif est composé d’un boîtier contenant la carte Elegoo MB V2, les breadboards et le câblage. Les fils sont protégés dans une gaine afin d’éviter les dommages causés par l’eau. Dans le pot, on retrouve un capteur d’humidité du sol, un capteur de lumière et un écran d’affichage.</p>
+      <p>Lorsque l’utilisateur sélectionne une plante, le système récupère ses besoins généraux à partir de la base de données OpenFarm. Ces informations permettent au système de comparer les mesures des capteurs avec les besoins réels de la plante. Si les conditions ne sont pas adéquates, un message apparaît sur l’écran pour informer l’utilisateur.</p>
+
+      <h3>Fonctionnement du système</h3>
+      <ol>
+        <li>L’utilisateur place la plante dans son pot.</li>
+        <li>L’utilisateur sélectionne le type de plante.</li>
+        <li>Le système interroge OpenFarm pour obtenir les besoins de la plante.</li>
+        <li>Les capteurs mesurent l’humidité du sol et la luminosité.</li>
+        <li>Les données sont envoyées au microcontrôleur.</li>
+        <li>Le microcontrôleur compare les données avec les besoins.</li>
+        <li>Un message apparaît si nécessaire.</li>
+        <li>Les capteurs vérifient les conditions régulièrement.</li>
+      </ol>
+
+      <h3>Comment la proposition répond aux défis et contraintes</h3>
+      <ul>
+        <li>Facilité d’utilisation : le système indique clairement ce qui manque à la plante.</li>
+        <li>Accessibilité : OpenFarm permet de connaître les besoins des plantes.</li>
+        <li>Fiabilité : les capteurs mesurent directement l’état réel de la plante.</li>
+        <li>Durabilité : le boîtier protège les composants électroniques.</li>
+      </ul>
+
+      <h3>Schématisation matérielle prévue</h3>
+      <ul>
+        <li>Carte Elegoo MB V2</li>
+        <li>Capteur d’humidité du sol</li>
+        <li>Capteur de lumière</li>
+        <li>Écran d’affichage</li>
+        <li>Boîtier de protection</li>
+      </ul>
+
+      <h3>Schématisation logicielle prévue</h3>
+      <ol>
+        <li>Initialisation des capteurs et de l’écran</li>
+        <li>Sélection de la plante</li>
+        <li>Récupération des besoins via OpenFarm</li>
+        <li>Lecture des données des capteurs</li>
+        <li>Comparaison avec les besoins</li>
+        <li>Affichage d’un message</li>
+        <li>Attente</li>
+        <li>Reprise du cycle</li>
+      </ol>
+
+      <h3>Justification du choix des technologies</h3>
+      <ul>
+        <li>Elegoo MB V2 : microcontrôleur abordable et simple à programmer</li>
+        <li>Capteur d’humidité du sol : mesure directe de l’humidité</li>
+        <li>Capteur de lumière : mesure de la luminosité</li>
+        <li>Écran d’affichage : communication claire avec l’utilisateur</li>
+        <li>OpenFarm : base de données ouverte sur les besoins des plantes</li>
+        <li>Arduino IDE : environnement de programmation simple</li>
+      </ul>
+    </div>
+
+    <div class="proposition">
+      <h2 class="section-title" id="proposition2">Proposition #2 – Système de conservation de plante</h2>
+
+      <div class="text-center mb-4">
+        <img src="img/imgProp2.png" class="img-fluid rounded shadow-sm" style="max-height: 350px; object-fit: cover;" alt="Système de conservation de plante">
+      </div>
+
+      <h3>Description détaillée de la proposition</h3>
+      <p>Le système de conservation de plante est une installation intelligente permettant d’aider à maintenir une plante en bonne santé automatiquement.</p>
+      <p>Le dispositif consiste en une grande boîte ouverte dans laquelle un pot contenant une plante est placé. Cette boîte est équipée de plusieurs capteurs qui mesurent l’environnement de la plante, notamment l’humidité du sol et la luminosité.</p>
+      <p>Le système est également capable d’agir automatiquement pour améliorer les conditions de la plante. Par exemple, si le sol est trop sec, un distributeur d’eau peut arroser la plante. Si la lumière est insuffisante, une lampe UV peut s’allumer afin de fournir la lumière nécessaire à la croissance.</p>
+      <p>L’utilisateur peut sélectionner le type de plante à l’aide d’une interface simple. Le système connaît alors les besoins généraux de cette plante et adapte ses actions en conséquence.</p>
+      <p>Ce système permet donc de faciliter l’entretien des plantes, particulièrement pour les personnes qui oublient de les arroser ou qui ne connaissent pas bien leurs besoins.</p>
+
+      <h3>Fonctionnement du système</h3>
+      <ol>
+        <li>L’utilisateur place une plante dans la boîte de conservation.</li>
+        <li>L’utilisateur sélectionne le type de plante.</li>
+        <li>Les capteurs mesurent l’humidité du sol et la luminosité.</li>
+        <li>Les données sont envoyées au microcontrôleur.</li>
+        <li>Le microcontrôleur compare les données avec les besoins de la plante.</li>
+        <li>Le système agit automatiquement si nécessaire.</li>
+        <li>Les capteurs vérifient les conditions régulièrement.</li>
+      </ol>
+
+      <h3>Comment la proposition répond aux défis et contraintes</h3>
+      <ul>
+        <li>Facilité d’utilisation</li>
+        <li>Accessibilité</li>
+        <li>Fiabilité</li>
+        <li>Durabilité</li>
+      </ul>
+
+      <h3>Interactions attendues</h3>
+      <ul>
+        <li>Amorce : l’utilisateur place la plante et sélectionne son type.</li>
+        <li>Déroulement : le système analyse les conditions et agit automatiquement.</li>
+        <li>Interaction continue : l’utilisateur observe les actions du système.</li>
+        <li>Temps d’interaction : fonctionnement continu.</li>
+      </ul>
+
+      <h3>Schématisation matérielle prévue</h3>
+      <ul>
+        <li>Microcontrôleur Arduino</li>
+        <li>Capteur d’humidité du sol</li>
+        <li>Capteur de lumière</li>
+        <li>Lampe UV</li>
+        <li>Distributeur d’eau</li>
+        <li>Réservoir d’eau</li>
+        <li>Boîte contenant la plante</li>
+      </ul>
+
+      <h3>Schématisation logicielle prévue</h3>
+      <ol>
+        <li>Initialisation des capteurs</li>
+        <li>Lecture des données</li>
+        <li>Comparaison avec les besoins</li>
+        <li>Prise de décision</li>
+        <li>Attente</li>
+        <li>Reprise du cycle</li>
+      </ol>
+
+      <h3>Justification du choix des technologies</h3>
+      <ul>
+        <li>Arduino</li>
+        <li>Capteur d’humidité du sol</li>
+        <li>Capteur de lumière</li>
+        <li>Lumière UV</li>
+        <li>Distributeur d’eau</li>
+        <li>Arduino IDE</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Sources</h2>
+    <ul>
+      <li><a href="https://projecthub.arduino.cc/lucasfernando/soil-moisture-sensor-comple-guide-b9c82b" target="_blank">Soil Moisture Sensor – Complete Guide</a></li>
+      <li><a href="https://forum.arduino.cc/t/connect-lcd-screen-to-a-breadboard/1326972" target="_blank">Connect LCD Screen to a Breadboard</a></li>
+      <li><a href="https://www.scribd.com/document/684504041/ELEGOO-MEGA-Kit-Breadboard-Power-Supply-Module" target="_blank">Elegoo Mega Kit – Breadboard Power Supply Module</a></li>
+      <li><a href="https://dotja.github.io/electronics/2020/05/13/Exploring-the-Elegoo-power-module.html" target="_blank">Exploring the Elegoo Power Module</a></li>
+      <li><a href="https://knowhow.distrelec.com/fr/energie-et-alimentation-electrique/limportance-des-ultraviolets-dans-leclairage-horticole/" target="_blank">Avantages des lumières UV sur les plantes</a></li>
+      <li><a href="https://www.fabriquedespossibles.fr/a-la-decouverte-darduino/" target="_blank">Arduino IDE et Arduino</a></li>
+      <li><a href="https://www.freecodecamp.org/news/how-to-use-a-resistive-soil-moisture-sensor/" target="_blank">Capteur d’humidité du sol</a></li>
+      <li><a href="https://github.com/openfarmcc/OpenFarm" target="_blank">Base de données OpenFarm</a></li>
+    </ul>
+
+  </div>
+
+  <footer class="text-center py-4 bg-light">
+    Projet – Système d’aide à l’entretien des plantes d’intérieur
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
