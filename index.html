@@ -1,229 +1,467 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
-  <title>Projet – Système d’aide à l’entretien des plantes d’intérieur</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet Plante</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { background-color: #f5f5f5; }
-    .section-title { border-left: 5px solid #2f855a; padding-left: 10px; margin-top: 40px; margin-bottom: 20px; color: #22543d; }
-    .proposition { border-top: 3px solid #e2e8f0; padding-top: 30px; margin-top: 40px; }
+    body {
+      line-height: 1.6;
+      color: #2c3e50;
+      background-color: #ffffff;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      background-color: #ffffff !important;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #198754 !important;
+    }
+
+    .nav-link {
+      color: #555 !important;
+    }
+
+    .nav-link.active {
+      font-weight: bold;
+      color: #198754 !important;
+    }
+
+    .container-report {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      color: #198754;
+      font-weight: 700;
+      margin-top: 2rem;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      color: #2e7d32;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      color: #333;
+      font-weight: 600;
+      margin-top: 2rem;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      color: #444;
+      margin-top: 1rem;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    .materiel-item {
+      margin-bottom: 30px;
+      padding-left: 15px;
+      border-left: 3px solid #e8f5e9;
+    }
+
+    .meta-text {
+      font-style: italic;
+      color: #7f8c8d;
+      font-size: 0.95rem;
+    }
+
+    .experimentation-item {
+      background-color: #fcfcfc;
+      padding: 25px;
+      border: 1px solid #eee;
+      border-left: 4px solid #198754;
+      margin-bottom: 25px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .highlight-box {
+      background-color: #f1f8e9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    footer {
+      border-top: 1px solid #eee;
+      padding: 40px 0;
+      color: #95a5a6;
+      font-size: 0.9rem;
+    }
+
+    @media print {
+      .navbar {
+        display: none;
+      }
+
+      body {
+        padding-top: 0;
+      }
+    }
   </style>
 </head>
 
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar-top">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <nav id="navbar-top" class="navbar navbar-expand-lg fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="#">Projet Plantes</a>
+      <a class="navbar-brand" href="#">Projet Plante</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#section1">Présentation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section2">Matériel</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section3">Expérimentations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section4">Sources et références</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <nav class="navbar navbar-light bg-light shadow-sm">
-    <div class="container justify-content-center">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link" href="#proposition1">Proposition 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#proposition2">Proposition 2</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="container-report">
 
-  <div class="container my-5">
-
-    <h1 class="text-center mb-4">Projet – Système d’aide à l’entretien des plantes d’intérieur</h1>
-
-    <h2 class="section-title">Constat de départ</h2>
-
-    <div class="row align-items-center mb-3">
-      <div class="col-md-8">
-        <p>La botanique intérieure est un art qui ne peut survivre sans interaction humaine. Pour rester en santé, les plantes ont besoin d’un équilibre eau et lumière propre à leur espèce.</p>
-        <p>Avec les horaires chargés et les déplacements, il est facile d’oublier une plante ou de la négliger, ce qui peut mener à son affaiblissement ou à sa mort.</p>
-        <p>Même si les plantes n’ont pas de conscience, elles restent des êtres vivants dont l’entretien mérite d’être pris au sérieux.</p>
+    <section id="section1">
+      <h1>Section 1 : Présentation du projet</h1>
+      <div class="highlight-box">
+        <p>À l’aide d’un Raspberry Pi 5, d’un Arduino et d’un écran LCD, l’utilisateur sélectionne sa plante dans une
+          liste interactive via un clavier 4x4. Le système interroge une API botanique (Perenual) pour obtenir les
+          besoins spécifiques de la plante, puis automatise l'entretien en activant une pompe à eau ou une lampe UV dès
+          que les capteurs détectent un manque d'humidité ou de lumière.</p>
       </div>
-      <div class="col-md-4">
-        <img src="img/imgPlante.png" class="img-fluid rounded shadow-sm" alt="Illustration du projet">
-      </div>
-    </div>
+      <p><strong>L’objectif principal</strong> est de permettre un entretien sur mesure et automatisé des plantes, en
+        utilisant des données scientifiques réelles pour garantir leur santé sans intervention humaine constante.</p>
+    </section>
 
-    <h2 class="section-title" id="projet-propose">Projet proposé</h2>
+    <section id="section2">
+      <h1>Section 2 : Matériel</h1>
 
-    <p>Pour simplifier la vie des utilisateurs tout en respectant les besoins des plantes, nous avons décidé de concevoir un système qui facilite leur entretien. L’objectif est d’offrir un outil simple, clair et efficace pour mieux comprendre et répondre aux besoins des plantes d’intérieur.</p>
-
-    <h2 class="section-title">Visées du projet</h2>
-    <ul>
-      <li>Permettre aux utilisateurs de garder leurs plantes en santé selon leur espèce</li>
-      <li>Rendre la botanique intérieure plus accessible et agréable</li>
-      <li>Offrir aux plantes une aide adaptée à leurs besoins réels</li>
-      <li>Fournir des indications claires et faciles à comprendre</li>
-    </ul>
-
-    <h2 class="section-title">Contraintes</h2>
-    <ul>
-      <li>Résistance à l’eau</li>
-      <li>Coût abordable</li>
-      <li>Adaptation à différents types de plantes</li>
-    </ul>
-
-    <div class="proposition">
-      <h2 class="section-title" id="proposition1">Proposition #1 – Système de notification du besoin de la plante (avec OpenFarm)</h2>
-
-      <div class="text-center mb-4">
-        <img src="img/imgProp1.png" class="img-fluid rounded shadow-sm" style="max-height: 350px; object-fit: cover;" alt="Système de notification de plante">
+      <div class="materiel-item">
+        <h3><a href="https://www.raspberrypi.com/documentation/">Raspberry Pi 5</a></h3>
+        <p class="meta-text">Fabricant : Raspberry Pi | Responsable : Georgi</p>
+        <p><strong>Usage :</strong> Décideur du système. Automatisation des tâches complexes, gestion des requêtes HTTP
+          vers l'API Perenual et envoi des commandes réseau à la prise intelligente.</p>
+        <p><strong>Justification :</strong> Choisi pour sa capacité à gérer un OS complet et sa RAM, permettant
+          d'interroger des API là où l'Arduino est limité techniquement.</p>
       </div>
 
-      <h3>Description détaillée de la proposition</h3>
-      <p>Le système de notification du besoin de la plante est une installation permettant d’aider l’utilisateur à maintenir une plante en bonne santé. Contrairement à un système automatisé, celui-ci n’agit pas directement sur l’environnement de la plante. Il se limite à analyser les conditions et à informer l’utilisateur lorsque quelque chose ne correspond pas aux besoins de la plante.</p>
-      <p>Le dispositif est composé d’un boîtier contenant la carte Elegoo MB V2, les breadboards et le câblage. Les fils sont protégés dans une gaine afin d’éviter les dommages causés par l’eau. Dans le pot, on retrouve un capteur d’humidité du sol, un capteur de lumière et un écran d’affichage.</p>
-      <p>Lorsque l’utilisateur sélectionne une plante, le système récupère ses besoins généraux à partir de la base de données OpenFarm. Ces informations permettent au système de comparer les mesures des capteurs avec les besoins réels de la plante. Si les conditions ne sont pas adéquates, un message apparaît sur l’écran pour informer l’utilisateur.</p>
-
-      <h3>Fonctionnement du système</h3>
-      <ol>
-        <li>L’utilisateur place la plante dans son pot.</li>
-        <li>L’utilisateur sélectionne le type de plante.</li>
-        <li>Le système interroge OpenFarm pour obtenir les besoins de la plante.</li>
-        <li>Les capteurs mesurent l’humidité du sol et la luminosité.</li>
-        <li>Les données sont envoyées au microcontrôleur.</li>
-        <li>Le microcontrôleur compare les données avec les besoins.</li>
-        <li>Un message apparaît si nécessaire.</li>
-        <li>Les capteurs vérifient les conditions régulièrement.</li>
-      </ol>
-
-      <h3>Comment la proposition répond aux défis et contraintes</h3>
-      <ul>
-        <li>Facilité d’utilisation : le système indique clairement ce qui manque à la plante.</li>
-        <li>Accessibilité : OpenFarm permet de connaître les besoins des plantes.</li>
-        <li>Fiabilité : les capteurs mesurent directement l’état réel de la plante.</li>
-        <li>Durabilité : le boîtier protège les composants électroniques.</li>
-      </ul>
-
-      <h3>Schématisation matérielle prévue</h3>
-      <ul>
-        <li>Carte Elegoo MB V2</li>
-        <li>Capteur d’humidité du sol</li>
-        <li>Capteur de lumière</li>
-        <li>Écran d’affichage</li>
-        <li>Boîtier de protection</li>
-      </ul>
-
-      <h3>Schématisation logicielle prévue</h3>
-      <ol>
-        <li>Initialisation des capteurs et de l’écran</li>
-        <li>Sélection de la plante</li>
-        <li>Récupération des besoins via OpenFarm</li>
-        <li>Lecture des données des capteurs</li>
-        <li>Comparaison avec les besoins</li>
-        <li>Affichage d’un message</li>
-        <li>Attente</li>
-        <li>Reprise du cycle</li>
-      </ol>
-
-      <h3>Justification du choix des technologies</h3>
-      <ul>
-        <li>Elegoo MB V2 : microcontrôleur abordable et simple à programmer</li>
-        <li>Capteur d’humidité du sol : mesure directe de l’humidité</li>
-        <li>Capteur de lumière : mesure de la luminosité</li>
-        <li>Écran d’affichage : communication claire avec l’utilisateur</li>
-        <li>OpenFarm : base de données ouverte sur les besoins des plantes</li>
-        <li>Arduino IDE : environnement de programmation simple</li>
-      </ul>
-    </div>
-
-    <div class="proposition">
-      <h2 class="section-title" id="proposition2">Proposition #2 – Système de conservation de plante</h2>
-
-      <div class="text-center mb-4">
-        <img src="img/imgProp2.png" class="img-fluid rounded shadow-sm" style="max-height: 350px; object-fit: cover;" alt="Système de conservation de plante">
+      <div class="materiel-item">
+        <h3><a href="https://store.arduino.cc/products/arduino-uno-rev3">Arduino Uno R3</a></h3>
+        <p class="meta-text">Fabricant : Arduino | Responsables : Julien, Georgi, Philippe</p>
+        <p><strong>Usage :</strong> Exécutant physique. Lecture directe des signaux analogiques des capteurs et gestion
+          de l'affichage LCD et du clavier. Transmet les données brutes au Pi via USB.</p>
+        <p><strong>Justification :</strong> Sélectionné pour sa réactivité sur les composants électroniques et sa
+          compatibilité avec les bibliothèques de capteurs.</p>
       </div>
 
-      <h3>Description détaillée de la proposition</h3>
-      <p>Le système de conservation de plante est une installation intelligente permettant d’aider à maintenir une plante en bonne santé automatiquement.</p>
-      <p>Le dispositif consiste en une grande boîte ouverte dans laquelle un pot contenant une plante est placé. Cette boîte est équipée de plusieurs capteurs qui mesurent l’environnement de la plante, notamment l’humidité du sol et la luminosité.</p>
-      <p>Le système est également capable d’agir automatiquement pour améliorer les conditions de la plante. Par exemple, si le sol est trop sec, un distributeur d’eau peut arroser la plante. Si la lumière est insuffisante, une lampe UV peut s’allumer afin de fournir la lumière nécessaire à la croissance.</p>
-      <p>L’utilisateur peut sélectionner le type de plante à l’aide d’une interface simple. Le système connaît alors les besoins généraux de cette plante et adapte ses actions en conséquence.</p>
-      <p>Ce système permet donc de faciliter l’entretien des plantes, particulièrement pour les personnes qui oublient de les arroser ou qui ne connaissent pas bien leurs besoins.</p>
+      <div class="materiel-item">
+        <h3><a
+            href="https://store.freenove.com/products/fnk0079?srsltid=AfmBOorITICF3FVnHfN5QrAOX6Zror22uD4Zlp9hF6tq_7tKuSvCXwmz ">Display
+            LCD I2C</a></h3>
 
-      <h3>Fonctionnement du système</h3>
-      <ol>
-        <li>L’utilisateur place une plante dans la boîte de conservation.</li>
-        <li>L’utilisateur sélectionne le type de plante.</li>
-        <li>Les capteurs mesurent l’humidité du sol et la luminosité.</li>
-        <li>Les données sont envoyées au microcontrôleur.</li>
-        <li>Le microcontrôleur compare les données avec les besoins de la plante.</li>
-        <li>Le système agit automatiquement si nécessaire.</li>
-        <li>Les capteurs vérifient les conditions régulièrement.</li>
-      </ol>
+        <p class="meta-text">Fabricant : Freenove (Modèle 1602 / 2004) | Responsable : Georgi</p>
+        <p><strong>Usage :</strong> Affichage de la liste des plantes et retour visuel pour l'utilisateur.</p>
+        <p><strong>Justification :</strong> Le protocole I2C réduit le câblage. Indispensable pour la navigation
+          visuelle.</p>
+      </div>
 
-      <h3>Comment la proposition répond aux défis et contraintes</h3>
-      <ul>
-        <li>Facilité d’utilisation</li>
-        <li>Accessibilité</li>
-        <li>Fiabilité</li>
-        <li>Durabilité</li>
-      </ul>
+      <div class="materiel-item">
+        <h3><a href="https://docs.arduino.cc/libraries/keypad/ ">Keypad 4x4</a></h3>
+        <p class="meta-text">Modèle : Matrice de touches 4x4 | Responsable : Georgi</p>
+        <p><strong>Usage :</strong> Navigation dans les menus et confirmation de la sélection de la plante.</p>
+        <p><strong>Justification :</strong> Interface de saisie simple, robuste et facile à intégrer logiciellement.</p>
+      </div>
 
-      <h3>Interactions attendues</h3>
-      <ul>
-        <li>Amorce : l’utilisateur place la plante et sélectionne son type.</li>
-        <li>Déroulement : le système analyse les conditions et agit automatiquement.</li>
-        <li>Interaction continue : l’utilisateur observe les actions du système.</li>
-        <li>Temps d’interaction : fonctionnement continu.</li>
-      </ul>
+      <div class="materiel-item">
+        <h3><a href="https://components101.com/modules/soil-moisture-sensor-module">Capteur d'humidité du sol</a></h3>
+        <p class="meta-text">Modèle : YL-69 (MH Sensors Series) | Responsable : Julien</p>
+        <p><strong>Usage :</strong> Mesurer le taux d'humidité en temps réel et envoyer la valeur analogique à
+          l'Arduino.</p>
+        <p><strong>Justification :</strong> Simple, peu coûteux et fournit une information directe sur l'état de la
+          terre.</p>
+      </div>
 
-      <h3>Schématisation matérielle prévue</h3>
-      <ul>
-        <li>Microcontrôleur Arduino</li>
-        <li>Capteur d’humidité du sol</li>
-        <li>Capteur de lumière</li>
-        <li>Lampe UV</li>
-        <li>Distributeur d’eau</li>
-        <li>Réservoir d’eau</li>
-        <li>Boîte contenant la plante</li>
-      </ul>
+      <div class="materiel-item">
+        <h3><a href="https://www.amazon.ca/Gikfun-2-5V-6V-Submersible-Silicone-EK1374/dp/B0957BS936">Mini pompe
+            submersible</a></h3>
+        <p class="meta-text">Modèle : Gikfun EK1374 | Responsable : Julien</p>
+        <p><strong>Usage :</strong> Assurer l'arrosage automatique de la plante.</p>
+        <p><strong>Justification :</strong> Petite taille et compatible avec une alimentation 5V.</p>
+      </div>
 
-      <h3>Schématisation logicielle prévue</h3>
-      <ol>
-        <li>Initialisation des capteurs</li>
-        <li>Lecture des données</li>
-        <li>Comparaison avec les besoins</li>
-        <li>Prise de décision</li>
-        <li>Attente</li>
-        <li>Reprise du cycle</li>
-      </ol>
+      <div class="materiel-item">
+        <h3><a href="https://components101.com/transistors/tip120-pinout-datasheet-equivalent">Transistor Darlington</a>
+        </h3>
+        <p class="meta-text">Modèle : TIP120 | Responsable : Julien</p>
+        <p><strong>Usage :</strong> Interrupteur électronique piloté par l'Arduino pour activer la pompe.</p>
+        <p><strong>Justification :</strong> Indispensable pour protéger l'Arduino qui ne peut pas fournir assez de
+          courant pour le moteur de la pompe.</p>
+      </div>
 
-      <h3>Justification du choix des technologies</h3>
-      <ul>
-        <li>Arduino</li>
-        <li>Capteur d’humidité du sol</li>
-        <li>Capteur de lumière</li>
-        <li>Lumière UV</li>
-        <li>Distributeur d’eau</li>
-        <li>Arduino IDE</li>
-      </ul>
+      <div class="materiel-item">
+        <h3><a href="https://www.electronics-tutorials.ws/resistor/res_1.html">Résistance 1kΩ</a></h3>
+        <p class="meta-text">Responsable : Julien</p>
+        <p><strong>Usage :</strong> Limiter le courant entre l'Arduino et la base du transistor TIP120.</p>
+        <p><strong>Justification :</strong> Protection vitale pour éviter de griller les composants.</p>
+      </div>
+
+      <div class="materiel-item">
+        <h3><a href="https://www.amazon.ca/dp/B0D4ZBZ3ZQ?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1">Smart Plug 15A (Prise
+            intelligente)</a></h3>
+        <p class="meta-text">Fabricant : EIGHTREE (Modèle ET10) | Responsable : Philippe</p>
+        <p><strong>Usage :</strong> Pilotage de l'alimentation de la lampe UV via le réseau local (Local Key).</p>
+        <p><strong>Justification :</strong> Sécurité (gestion du 120V) et réactivité grâce au contournement du Cloud
+          Tuya.</p>
+      </div>
+
+      <div class="materiel-item">
+        <h3><a href="https://www.elegoo.com/blogs/arduino-projects/elegoo-uno-project-super-starter-kit-tutorial">Elegoo
+            Starter Board</a></h3>
+        <p class="meta-text">Modèle : UNO R3 | Responsable : Philippe</p>
+        <p><strong>Usage :</strong> Plateforme de test pour valider les circuits avant l'intégration finale.</p>
+        <p><strong>Justification :</strong> Permet un prototypage rapide sans immobiliser l'unité centrale.</p>
+      </div>
+
+      <div class="materiel-item">
+        <h3>Bloc d'alimentation secteur vers USB</h3>
+        <p class="meta-text">Modèle : Générique | Responsable : Philippe</p>
+        <p><strong>Usage :</strong> Interface de puissance entre la prise intelligente et la lampe.</p>
+        <p><strong>Justification :</strong> Convertit le 120V AC en 5V DC pour la lampe USB.</p>
+      </div>
+
+      <div class="materiel-item">
+        <h3><a href="https://www.amazon.ca/dp/B0B5YWYBKW?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1">Mini lumière UV</a>
+        </h3>
+        <p class="meta-text">Fabricant : Brokimis | Responsable : Philippe</p>
+        <p><strong>Usage :</strong> Source de lumière artificielle pour la plante.</p>
+        <p><strong>Justification :</strong> Tige flexible ajustable et spectre adapté (390-395nm).</p>
+      </div>
+    </section>
+
+    <section id="section3">
+      <h1>Section 3 : Expérimentations</h1>
+
+      <h2>I. Gestion de la lumière</h2>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 1 : Acquisition de données et transmission série</h4>
+        <p class="meta-text">Membre : Philippe</p>
+        <p><strong>Objectif :</strong> Valider la chaîne de lecture : l'Arduino lit le capteur et transmet l'info à l'ordinateur
+          pour décision.</p>
+        <p><strong>Contexte :</strong> Capteur de lumière sur A0. Script Python sur l'ordinateur interceptant les données via
+          USB.</p>
+        <p><strong>Résultat :</strong> Succès. L'ordinateur reçoit bien les variations de lumière, lui permettant de
+          décider d'allumer la lampe.</p>
+        <img src="img/img1.png" class="img-fluid rounded shadow-sm" alt="Image de la connection du capteur de lumière et de l'Arduino">
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> L'hypothèse est validée : la communication série
+          entre l'Arduino et l'ordinateur est stable, permettant un monitoring de la luminosité en temps réel sans
+          perte de paquets.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 2 : Contrôle de l'alimentation (Le pivot)</h4>
+        <p class="meta-text">Membre : Philippe</p>
+        <p><strong>Objectif :</strong> Piloter la lampe UV via logiciel.</p>
+        <p><strong>Contexte :</strong> Échec du module Elegoo (non pilotable USB). Remplacement par la prise Eightree
+          avec extraction de la "Local Key" pour commande locale.</p>
+        <p><strong>Résultat :</strong> Contrôle total sans latence Cloud via le protocole Tinytuya.</p>
+        <img src="img/img2.png" class="img-fluid rounded shadow-sm" alt="Image de la prise intelligente et de la prise USB">
+        <p><strong>Avis final :</strong> <strong>Partiellement concluant à l'origine, puis validé après pivot.</strong>
+          La technologie Elegoo était insatisfaisante car elle ne permettait pas le contrôle logiciel souhaité. Le
+          remplacement par la prise intelligente Eightree est une réussite totale, offrant sécurité et réactivité.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 3 : Intelligence botanique et réactivité</h4>
+        <p class="meta-text">Membre : Philippe</p>
+        <p><strong>Objectif :</strong> Automatiser selon les besoins réels de l'API et assurer la portabilité réseau. La lampe s'ouvre et se ferme en fonction de la luminosité ambiante.</p>
+        <p><strong>Contexte :</strong> Intégration de l'API Perenual et code de scan automatique d'IP pour trouver la
+          prise sur le WiFi. Allumage et Fermeture de la lumière en fonction de la luminosité ambiante</p>
+        <p><strong>Résultat :</strong> Le système s'adaptant à n'importe quel réseau et aux besoins spécifiques de la
+          plante.</p>
+        <div class="mt-3">
+        <video controls class="rounded shadow-sm" style="max-width: 100%; height: auto;">
+            <source src="vid/vid1.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
     </div>
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> L'utilisation de données scientifiques via l'API
+          apporte des données réelles au projet. Le système est désormais autonome et capable de s'auto-configurer
+          sur différents réseaux WiFi.</p>
+      </div>
 
-    <h2 class="section-title">Sources</h2>
-    <ul>
-      <li><a href="https://projecthub.arduino.cc/lucasfernando/soil-moisture-sensor-comple-guide-b9c82b" target="_blank">Soil Moisture Sensor – Complete Guide</a></li>
-      <li><a href="https://forum.arduino.cc/t/connect-lcd-screen-to-a-breadboard/1326972" target="_blank">Connect LCD Screen to a Breadboard</a></li>
-      <li><a href="https://www.scribd.com/document/684504041/ELEGOO-MEGA-Kit-Breadboard-Power-Supply-Module" target="_blank">Elegoo Mega Kit – Breadboard Power Supply Module</a></li>
-      <li><a href="https://dotja.github.io/electronics/2020/05/13/Exploring-the-Elegoo-power-module.html" target="_blank">Exploring the Elegoo Power Module</a></li>
-      <li><a href="https://knowhow.distrelec.com/fr/energie-et-alimentation-electrique/limportance-des-ultraviolets-dans-leclairage-horticole/" target="_blank">Avantages des lumières UV sur les plantes</a></li>
-      <li><a href="https://www.fabriquedespossibles.fr/a-la-decouverte-darduino/" target="_blank">Arduino IDE et Arduino</a></li>
-      <li><a href="https://www.freecodecamp.org/news/how-to-use-a-resistive-soil-moisture-sensor/" target="_blank">Capteur d’humidité du sol</a></li>
-      <li><a href="https://github.com/openfarmcc/OpenFarm" target="_blank">Base de données OpenFarm</a></li>
-      <li><a href ="https://www.hackster.io/lucasfernando/how-to-use-light-sensors-with-arduino-lesson-10-38759c" target="_blank"> Utiliser un capteur de lumière avec Arduino</a></li>
-    </ul>
+      <h2>II. Gestion de l’interface (Écran et Clavier)</h2>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 1 : Établissement de la liaison série (Handshake)</h4>
+        <p class="meta-text">Membre : Georgi</p>
+        <p><strong>Objectif :</strong> Assurer une détection stable de l'Arduino par le Raspberry Pi 5.</p>
+        <p><strong>Résultat :</strong> Succès. Identification correcte du port /dev/ttyACM0.</p>
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> La liaison série bidirectionnelle est établie. Le
+          Raspberry Pi identifie l'Arduino dès le branchement, ce qui garantit la robustesse du système lors des
+          redémarrages.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 2 : Affichage dynamique et navigation I2C</h4>
+        <p class="meta-text">Membre : Georgi</p>
+        <p><strong>Objectif :</strong> Valider l'affichage des données envoyées par le Pi sur le LCD.</p>
+        <p><strong>Résultat :</strong> L'écran affiche les caractères reçus sans erreur.</p>
+        <img src="img/img3.png" class="img-fluid rounded shadow-sm">
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> L'utilisation de l'I2C est validée : elle permet de
+          libérer des broches sur l'Arduino tout en offrant une lecture claire des noms de plantes pour l'utilisateur.
+        </p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 3 : Navigation dans la liste</h4>
+        <p class="meta-text">Membre : Georgi</p>
+        <p><strong>Objectif :</strong> Parcourir la liste de plantes via le clavier.</p>
+        <p><strong>Résultat :</strong> Vidéo 1. Défilement fluide des noms de plantes à l'écran.</p>
+         <video controls class="rounded shadow-sm" style="max-width: 100%; height: auto;">
+            <source src="vid/vid2.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> L'interface utilisateur est fonctionnelle. Le
+          clavier 4x4 répond sans délai (debounce maîtrisé), permettant une navigation intuitive dans la base de données
+          botanique.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 4 : Sélection d'une plante</h4>
+        <p class="meta-text">Membre : Georgi</p>
+        <p><strong>Objectif :</strong> Sélectionner une plante et confirmer l'action à l'écran.</p>
+        <p><strong>Résultat :</strong> Vidéo 2. L'affichage confirme la sélection et l'info est renvoyée au Pi.</p>
+         <video controls class="rounded shadow-sm" style="max-width: 100%; height: auto;">
+            <source src="vid/vid3.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> La boucle d'interaction est bouclée. Le Raspberry
+          Pi reçoit l'ID de la plante sélectionnée et peut immédiatement déclencher les requêtes API correspondantes.
+        </p>
+      </div>
+
+      <h2>III. Gestion de la pompe</h2>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 1 : Test du capteur d’humidité (Connectivité)</h4>
+        <p class="meta-text">Membre : Julien</p>
+        <p><strong>Objectif :</strong> Vérifier la connexion physique capteur/Arduino.</p>
+        <p><strong>Résultat :</strong> LED verte allumée, signal reçu.</p>
+        <img src="img/img4.png" class="img-fluid rounded shadow-sm">
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> Le câblage est validé. Le signal électrique circule
+          correctement entre le module de détection et le microcontrôleur.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 2 : Test de cohérence des données</h4>
+        <p class="meta-text">Membre : Julien</p>
+        <p><strong>Objectif :</strong> Vérifier la stabilité des valeurs dans le sol.</p>
+        <p><strong>Résultat :</strong> Valeurs fiables et stables (peu de bruit).</p>
+        <img src="img/img5.png" class="img-fluid rounded shadow-sm">
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> Les données sont exploitables. La stabilité des
+          lectures analogiques permet de définir des seuils d'arrosage précis sans risque de faux déclenchements.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 3 : Test de fonctionnement de la pompe</h4>
+        <p class="meta-text">Membre : Julien</p>
+        <p><strong>Objectif :</strong> Vérifier le moteur de la pompe (isolation).</p>
+        <p><strong>Résultat :</strong> La pompe circule correctement sur alimentation externe 5V.</p>
+         <video controls class="rounded shadow-sm" style="max-width: 100%; height: auto;">
+            <source src="vid/vid4.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+        <p><strong>Avis final :</strong> <strong>Concluant.</strong> Le moteur est opérationnel. Le test confirme la
+          nécessité d'une source d'énergie dédiée, l'Arduino ne pouvant fournir l'ampérage requis.</p>
+      </div>
+
+      <div class="experimentation-item">
+        <h4>Expérimentation 4 : Test du système complet (Automatisation)</h4>
+        <p class="meta-text">Membre : Julien</p>
+        <p><strong>Objectif :</strong> Vérifier l'activation automatique de l'arrosage.</p>
+        <p><strong>Contexte :</strong> Montage avec transistor TIP120 et seuils de code fictifs pour test.</p>
+        <p><strong>Résultat :</strong> La pompe s'allume dès que le sol est sec.</p>
+         <video controls class="rounded shadow-sm" style="max-width: 100%; height: auto;">
+            <source src="vid/vid5.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+        <p><strong>Avis final :</strong> <strong>Concluant, avec ajustements mineurs.</strong> Le circuit de puissance
+          (TIP120) fonctionne parfaitement. Cependant, une modification logicielle est nécessaire pour réduire le temps
+          d'activation de la pompe afin d'éviter un surplus d'eau.</p>
+      </div>
+    </section>
+    <section id="section4">
+            <h1>Section 4 : Sources et Références</h1>
+            <p class="mt-4">Cette section répertorie les ressources techniques, les bibliothèques logicielles et les guides documentaires qui ont permis la réalisation et la validation technologique de ce projet.</p>
+
+            <div class="materiel-item">
+                <h3>1. Bibliothèques et Protocoles IoT</h3>
+                <ul>
+                    <li><strong>TinyTuya (Interface Python) :</strong> <a href="https://github.com/jasonacox/tinytuya" target="_blank">https://github.com/jasonacox/tinytuya</a> — Utilisé pour le pilotage local de la prise intelligente.</li>
+                    <li><strong>Tuya IoT Platform :</strong> <a href="https://developer.tuya.com/en/docs/iot" target="_blank">https://developer.tuya.com/en/docs/iot</a> — Documentation officielle pour la gestion des appareils connectés.</li>
+                </ul>
+            </div>
+
+            <div class="materiel-item">
+                <h3>2. Intelligence Botanique et API</h3>
+                <ul>
+                    <li><strong>Perenual Plant API :</strong> <a href="https://perenual.com/docs/api" target="_blank">https://perenual.com/docs/api</a> — Base de données utilisée pour extraire les besoins spécifiques des plantes.</li>
+                </ul>
+            </div>
+
+            <div class="materiel-item">
+                <h3>3. Guides de branchements et Capteurs</h3>
+                <ul>
+                    <li><strong>Capteur d’humidité (YL-39 / YL-69) :</strong>
+                        <ul>
+                            <li>Guide Hackster : <a href="https://www.hackster.io/nekhbet/using-the-yl-39-yl-69-soil-humidity-sensor-with-arduino-968268" target="_blank">Using the soil humidity sensor with Arduino</a></li>
+                            <li>Guide complet Project Hub : <a href="https://projecthub.arduino.cc/lucasfernando/soil-moisture-sensor-comple-guide-b9c82b" target="_blank">Soil moisture sensor complete guide</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>Interface LCD et Clavier :</strong> <a href="https://arduinogetstarted.com/tutorials/arduino-keypad-lcd" target="_blank">https://arduinogetstarted.com/tutorials/arduino-keypad-lcd</a> — Tutoriel pour l'intégration combinée du clavier et de l'écran.</li>
+                    <li><strong>Connexion LCD :</strong> <a href="https://forum.arduino.cc/t/connect-lcd-screen-to-a-breadboard/1326972" target="_blank">Forum Arduino - Connect LCD screen to a breadboard</a></li>
+                </ul>
+            </div>
+
+            <div class="materiel-item">
+                <h3>4. Configuration Système et Développement</h3>
+                <ul>
+                    <li><strong>Documentation Raspberry Pi :</strong> <a href="https://www.raspberrypi.com/documentation/computers/remote-access.html" target="_blank">Remote access and configuration</a></li>
+                    <li><strong>Développement sur Raspberry Pi :</strong> <a href="https://code.visualstudio.com/docs/setup/raspberry-pi" target="_blank">Setting up VS Code on Raspberry Pi</a></li>
+                </ul>
+            </div>
+
+            <div class="materiel-item">
+                <h3>5. Documentation des modules et Alimentation</h3>
+                <ul>
+                    <li><strong>Guide ELEGOO MEGA Kit :</strong> <a href="https://fr.scribd.com/document/684504041/ELEGOO-MEGA-Kit-Breadboard-Power-Supply-Module" target="_blank">Power Supply Module Manual</a></li>
+                    <li><strong>Analyse technique Elegoo :</strong> <a href="https://dotja.github.io/electronics/2020/05/13/Exploring-the-Elegoo-power-module.html" target="_blank">Exploring the Elegoo power module</a></li>
+                </ul>
+            </div>
+        </section>
+    <footer class="text-center">
+      <p>Projet Plante - 2026</p>
+      <p class="meta-text">Réalisé par Julien, Georgi et Philippe</p>
+    </footer>
 
   </div>
 
-  <footer class="text-center py-4 bg-light">
-    Projet – Système d’aide à l’entretien des plantes d’intérieur
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
